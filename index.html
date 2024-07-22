@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Registro</title>
+    <link rel="stylesheet" href="assets/CSS/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/CSS/style.css">
+    <link rel="stylesheet" href="assets/CSS/modo.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container-fluid">
+            <span class="navbar-brand m-auto h1">Registro de Usuarios</span>
+            <label class="switch">
+                <input type="checkbox" class="checkbox">
+                <div class="slider"></div>
+            </label><br>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="form-container">
+            <form id="registroForm" action="https://formspree.io/f/mzzpzrnr" method="POST">
+                <label for="nombre">Nombre</label>
+                <input type="text" id="nombre" name="nombre" class="form-control text-center" required>
+
+                <label for="ap">Apellido Paterno</label>
+                <input type="text" id="ap" name="apellido_paterno" class="form-control text-center" required>
+
+                <label for="am">Apellido Materno</label>
+                <input type="text" id="am" name="apellido_materno" class="form-control text-center" required>
+
+                <label for="correo">Correo</label>
+                <input type="email" id="correo" name="correo" class="form-control text-center" required>
+
+                <label for="pass">Contraseña</label>
+                <div class="input-group">
+                    <input type="password" id="pass" name="password" class="form-control text-center" required>
+                    <span class="input-group-text" id="icon"><i class="bx bx-show-alt"></i></span>
+                </div><br>
+
+                <center>
+                <div class="g-recaptcha" data-sitekey="6LcA7gcqAAAAAGai9c4aRxbJ95YOPwHdG3cJaHYO"></div><br>
+                
+                <input type="submit" class="btn btn-dark" id="registrar" value="Registrar">
+                </center>
+            </form>
+        </div>
+    </div>
+    <script src="assets/JS/modo.js"></script>
+    <script src="assets/JS/sweetalert2.all.min (1).js"></script>
+    <script src="assets/JS/app.js"></script>
+    <script>
+    const icon = document.querySelector('#icon');
+    const password = document.querySelector('#pass');
+
+    icon.addEventListener('click', function (e) {
+    const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+    password.setAttribute('type', type);
+    this.querySelector('i').classList.toggle('bx-show-alt');
+    this.querySelector('i').classList.toggle('bx-hide');
+});
+    </script>
+</body>
+</html>

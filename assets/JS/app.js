@@ -57,7 +57,12 @@ function notify(){
 
     }else if(Notification.permission === "granted"){
         //Lanzar notificacion si ya fue autorizado el servicio
-        var notification = new Notification(`Bienvenid@ ${nombre} a este tu nuevo hogar, puede proceder al Login`);
+        var notification = new Notification(`Bienvenid@ ${nombre}`, 
+            {
+                icon: "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.zarla.com%2Fes%2Fgu%25C3%25ADas%2Flogos-para-ventas&psig=AOvVaw3ukJtJPSRQuwLul-tqF6OP&ust=1722917074419000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCJCG4bT83IcDFQAAAAAdAAAAABAE",
+                body: "a este tu nuevo hogar, puede proceder al Login"
+            }
+        );
 
     }else if(Notification.permission !== "denied"){
         Notification.requestPermission(function(permission){

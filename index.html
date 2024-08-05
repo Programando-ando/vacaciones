@@ -11,19 +11,18 @@
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 <body>
-    <nav class="navbar">
-        <div class="container-fluid">
-            <span class="navbar-brand m-auto h1">Registro de Usuarios</span>
+    <div>
+        <h1 id="r">Registro de Usuarios</h1>
+        <div class="ms-auto">
             <label class="switch">
                 <input type="checkbox" class="checkbox">
                 <div class="slider"></div>
-            </label><br>
+            </label>
         </div>
-    </nav>
 
     <div class="container">
         <div class="form-container">
-            <form id="registroForm" action="https://formspree.io/f/mzzpzrnr" method="POST">
+            <form>
                 <label for="nombre">Nombre</label>
                 <input type="text" id="nombre" name="nombre" class="form-control text-center" required>
 
@@ -43,26 +42,26 @@
                 </div><br>
 
                 <center>
-                <div class="g-recaptcha" data-sitekey="6LcA7gcqAAAAAGai9c4aRxbJ95YOPwHdG3cJaHYO"></div><br>
-                
-                <input type="submit" class="btn btn-dark" id="registrar" value="Registrar">
+                    <div class="g-recaptcha" data-sitekey="6LcA7gcqAAAAAGai9c4aRxbJ95YOPwHdG3cJaHYO"></div><br>
+                    <input type="submit" class="btn btn-dark" id="registrar" value="Registrar">
                 </center>
             </form>
         </div>
     </div>
+
     <script src="assets/JS/modo.js"></script>
-    <script src="assets/JS/sweetalert2.all.min (1).js"></script>
+    <script src="assets/JS/sweetalert2.all.min.js"></script>
     <script src="assets/JS/app.js"></script>
     <script>
-    const icon = document.querySelector('#icon');
-    const password = document.querySelector('#pass');
+        const icon = document.querySelector('#icon');
+        const password = document.querySelector('#pass');
 
-    icon.addEventListener('click', function (e) {
-    const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
-    password.setAttribute('type', type);
-    this.querySelector('i').classList.toggle('bx-show-alt');
-    this.querySelector('i').classList.toggle('bx-hide');
-});
+        icon.addEventListener('click', function () {
+            const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+            password.setAttribute('type', type);
+            this.querySelector('i').classList.toggle('bx-show-alt');
+            this.querySelector('i').classList.toggle('bx-hide');
+        });
     </script>
 </body>
 </html>

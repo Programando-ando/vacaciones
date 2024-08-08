@@ -1,5 +1,8 @@
 var registrar = document.getElementById("registrar");
 
+let pass = document.getElementById("pass");
+let correo = document.getElementById("correo");
+
 registrar.onclick = async () => {
     let nombre = document.getElementById("nombre").value;
     let ap = document.getElementById("ap").value;
@@ -10,6 +13,15 @@ registrar.onclick = async () => {
 
     if (nombre.trim() === "" || ap.trim() === "" || am.trim() === "" || correo.trim() === "" || pass.trim() === "") {
         Swal.fire({title: "ERROR", text: "Campos vacíos :(", icon: "error"});
+        return;
+    }
+
+    if (!validarCorreo(correo)) {
+        Swal.fire("ERROR", "Correo no valido", "error");
+        return;
+    }
+    if (!validarPassword(pass)) {
+        Swal.fire("ERROR", "Password no valido", "error");
         return;
     }
 
@@ -46,6 +58,8 @@ const limpiar = () => {
     document.getElementById("correo").value = "";
     document.getElementById("pass").value = "";
     grecaptcha.reset(); // Resetea el captcha
+    pass.style.backgroundColor = "white";
+    correo.style.backgroundColor = "white";
 };
 
 
@@ -57,12 +71,9 @@ function notify(){
 
     }else if(Notification.permission === "granted"){
         //Lanzar notificacion si ya fue autorizado el servicio
-        var notification = new Notification(`Bienvenid@ ${nombre}`, 
-            {
-                icon: "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.zarla.com%2Fes%2Fgu%25C3%25ADas%2Flogos-para-ventas&psig=AOvVaw3ukJtJPSRQuwLul-tqF6OP&ust=1722917074419000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCJCG4bT83IcDFQAAAAAdAAAAABAE",
-                body: "a este tu nuevo hogar, puede proceder al Login"
-            }
-        );
+        var notification = new Notification(`Bienvenid@ ${nombre} a este tu nuevo hogar, puede proceder al Login`, {
+            icon: 'assets/IMG/LOGO.jpeg'
+        });
 
     }else if(Notification.permission !== "denied"){
         Notification.requestPermission(function(permission){
@@ -74,3 +85,32 @@ function notify(){
     }
 }
 
+function validarCorreo(correo) {
+    var regex = /[\w-\.]{2,}@([\w-]{2,}\.)*([\w-]{2,}\.)[\w-]{2,4}/;
+    return regex.test(correo.trim());
+  }
+  
+  function validarPassword(password) {
+    var regex = /^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$/;
+    return regex.test(password.trim());
+  }
+
+  pass.onkeydown = () =>{
+    let pa = pass.value;
+    pass.style.backgroundColor = "none";
+    if(validarPassword(pa)){
+        pass.style.backgroundColor = "green";
+    }else{
+        pass.style.backgroundColor = "red";
+    }
+}
+
+correo.onkeydown = () =>{
+    let co = correo.value;
+    correo.style.backgroundColor = "none";
+    if(validarCorreo(co)){
+        correo.style.backgroundColor = "green";
+    }else{
+        correo.style.backgroundColor = "red";
+    }
+}

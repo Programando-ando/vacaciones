@@ -57,7 +57,7 @@ const limpiar = () => {
     document.getElementById("am").value = "";
     document.getElementById("correo").value = "";
     document.getElementById("pass").value = "";
-    grecaptcha.reset(); // Resetea el captcha
+    grecaptcha.reset();
     pass.style.backgroundColor = "white";
     correo.style.backgroundColor = "white";
 };
@@ -71,9 +71,14 @@ function notify(){
 
     }else if(Notification.permission === "granted"){
         //Lanzar notificacion si ya fue autorizado el servicio
-        var notification = new Notification(`Bienvenid@ ${nombre} a este tu nuevo hogar, puede proceder al Login`, {
-            icon: 'assets/IMG/LOGO.jpeg'
+        const notification = new Notification(`Hola un Gusto saludarte`, {
+            icon: 'assets/IMG/LOGO.jpeg',
+            body: `Bienvenid@ ${nombre} a este tu nuevo hogar, puede proceder al Login`,
         });
+
+        notification.onclick= function(){
+            window.open('http://google.com');
+        }
 
     }else if(Notification.permission !== "denied"){
         Notification.requestPermission(function(permission){
